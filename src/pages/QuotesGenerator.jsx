@@ -11,13 +11,13 @@ const QuotesGenerator = () => {
   const [tagsOptions, setTagsOptions] = useState([])
   const [tag, setTag] = useState("")
   const [loader, setLoader] = useState(false)
-  const handleNextQuote = async(params) => {
+  const handleNextQuote = async (params) => {
     setLoader(true)
     setTag(params)
     await dispatch(fetchQuotes(params));
     setLoader(false)
   }
-  
+
   const getTagsAPI = async () => {
     try {
       setLoader(true)
@@ -36,7 +36,7 @@ const QuotesGenerator = () => {
 
     }
   }
-  const fetchQuotesAPI = ()=>{
+  const fetchQuotesAPI = () => {
     setLoader(true)
     dispatch(fetchQuotes(tag));
     setLoader(false)
@@ -50,7 +50,7 @@ const QuotesGenerator = () => {
       <div className={styles.quotemainDiv}>
         <Cards card={quote} bookmarkIcon={true} />
         <div className={styles.btnDiv}>
-          <select onChange={(e) => { handleNextQuote(e?.target?.value) }}>
+          <select name="tag" id="tag" value={tagsOptions?.find((element) => element?.value === tag)?.value || ""} onChange={(e) => { handleNextQuote(e?.target?.value) }}>
             <option value=""> Select All</option>
             {tagsOptions?.map((option) => {
               return <option key={option?.id} value={option?.value}> {option?.label}</option>
