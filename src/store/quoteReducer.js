@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 export const fetchQuotes = createAsyncThunk(
     "quote/fetch",
     async (params) => {
-        const res  = await getRandonQuotes(params)
+        const res = await getRandonQuotes(params)
         return res;
     }
 )
@@ -18,12 +18,21 @@ const quoteSlice = createSlice({
     },
     reducers: {
         add(state, action) {
-            state?.bookmark?.push(action.payload)
-            toast("Quotes Added Sucessfully ✔️")
+            const newQuote = action.payload;
+            const isDuplicate = state.bookmark.some(quote => quote._id === newQuote._id);
+
+            if (isDuplicate) {
+                toast.error("Quote already exists in bookmarks");
+            } else {
+                state.bookmark.push(newQuote);
+                toast.success("Quote added successfully");
+            }
+
         },
-        remove(state, action){
+        remove(state, action) {
+
             state.bookmark = state.bookmark.filter(item => item._id !== action.payload._id);
-            toast("Quotes Removed Sucessfully ✔️")
+            toast?.success("Quotes Removed Sucessfully")
         }
     },
     extraReducers: (builder) => {

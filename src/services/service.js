@@ -8,7 +8,7 @@ axios.interceptors.response.use(
   
       } else if (error?.response?.status === 403) {
       } else if (error?.response?.status === 404) {
-        toast("❌ Data Not Found");
+        toast?.error("Data Not Found");
       } else if (error?.response?.status === 400) {
   
       } else {
