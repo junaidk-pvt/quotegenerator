@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getRandonQuotes } from "../services/service";
+import toast from "react-hot-toast";
 
 export const fetchQuotes = createAsyncThunk(
     "quote/fetch",
@@ -18,7 +19,7 @@ const quoteSlice = createSlice({
     reducers: {
         add(state, action) {
             state?.bookmark?.push(action.payload)
-            alert("Item Added")
+            toast("Quotes Added Sucessfully ✔️")
         },
     },
     extraReducers: (builder) => {

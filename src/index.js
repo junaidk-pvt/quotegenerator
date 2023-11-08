@@ -1,21 +1,27 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import Layout from './Layout';
+import { Toaster } from 'react-hot-toast';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './router';
 import { Provider } from 'react-redux';
 import { store } from './store';
+import Spinner from './Components/Spinner/Spinner';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
+
   <Provider store={store}>
-    
-   <RouterProvider router={router}>
-    <Layout />
-   </RouterProvider>
+
+    <Suspense fallback=<Spinner />>
+      <Toaster position="top-right" reverseOrder={false} />
+      <RouterProvider router={router}>
+        <Layout />
+      </RouterProvider>
+    </Suspense>
   </Provider>
   // </React.StrictMode>
 );

@@ -1,10 +1,10 @@
 import { lazy } from "react";
 import { Navigate, createBrowserRouter } from "react-router-dom";
-import Layout from "./Layout";
-import {Path} from './utils/Path'
+// import Layout from "./Layout";
+import {Path} from './utils/Path';
+const Layout =  lazy(()=> import( "./Layout"));
 const QuotesGenerator =  lazy(() => import("./pages/QuotesGenerator"));
-const Bookmarks =  lazy(()=> ("./pages/Bookmarks"));
-// import QuotesGenerator from "./pages/QuotesGenerator";
+const Bookmarks =  lazy(()=> import("./pages/Bookmarks"));
 console.log('Path[0].path', Path[0].path)
 export const router = createBrowserRouter([
     {

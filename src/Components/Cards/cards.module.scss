@@ -11,15 +11,25 @@
     max-width: 700px;
     min-width: 500px;
     padding: 20px;
+    
     @media (max-width: 768px) {
         min-height: 150px;
-        max-width: 300px;
         min-width: 300px;
+        max-width: 300px;
+    }
+    @media (max-width: 344px) {
+        min-height: 150px;
+        max-width: 200px;
+        min-width: 250px;
     }
     .bookmarkIcon {
         cursor: pointer;
         position: absolute;
         bottom: 20px;
         right: 80px;
+        @media (max-width: 344px) {
+            right: 40px;
+        }
+        
     }
 }
