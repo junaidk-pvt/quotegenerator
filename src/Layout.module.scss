@@ -1,0 +1,21 @@
+.navDiv{
+    padding: 10px 30px;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    .link{
+        width: fit-content;
+        text-decoration: none;
+        color: white;
+        white-space: nowrap;
+        padding: 5px;
+
+        &:hover{    
+            font-weight: 600;
+        }
+    }
+    .activeLink{
+        font-weight: 600;
+    }
+
+}

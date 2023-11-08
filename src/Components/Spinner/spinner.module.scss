@@ -1,0 +1,39 @@
+.spinnerBackground {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #00000080;
+    z-index: 1111;
+
+    .spinner {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 8px solid #0000;
+        border-right-color: #69a6ce;
+        position: absolute;
+        top: calc(50% - 35px);
+        left: calc(50% - 35px);
+        animation: spin 1s infinite linear;
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: inherit;
+            animation: inherit;
+            border-right-color: #3b60e4;
+            animation-duration: 2s;
+
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(1turn)
+            }
+        }
+    }
+}

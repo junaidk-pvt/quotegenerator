@@ -1,0 +1,24 @@
+.quotemainDiv {
+    margin: 30px 0px;
+    display: grid;
+    gap: 20px;
+    justify-content: center;
+    .btnDiv {
+        margin-top: 10px;
+        display: grid;
+        gap:20px;
+        justify-content: center;
+        select{
+            border-radius: 10px;
+        }
+        .nextBtn {
+            cursor: pointer;
+            width: 150px;
+            border: 2px solid black;
+            padding: 4px 15px;
+            border-radius: 100px;
+            background-color: #009c51;
+            color: azure;
+        }
+    }
+}
