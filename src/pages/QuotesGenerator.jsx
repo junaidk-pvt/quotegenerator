@@ -11,13 +11,13 @@ const QuotesGenerator = () => {
   const [tagsOptions, setTagsOptions] = useState([])
   const [tag, setTag] = useState("")
   const [loader, setLoader] = useState(false)
-  const handleNextQuote = (params) => {
-    setLoader(false)
+  const handleNextQuote = async(params) => {
+    setLoader(true)
     setTag(params)
-    dispatch(fetchQuotes(params));
+    await dispatch(fetchQuotes(params));
     setLoader(false)
   }
-
+  console.log('loader', loader)
   const getTagsAPI = async () => {
     try {
       setLoader(true)
@@ -36,9 +36,13 @@ const QuotesGenerator = () => {
 
     }
   }
-  useEffect(() => {
-    
+  const fetchQuotesAPI = ()=>{
+    setLoader(true)
     dispatch(fetchQuotes(tag));
+    setLoader(false)
+  }
+  useEffect(() => {
+    fetchQuotesAPI()
     getTagsAPI()
   }, [])
   return (
