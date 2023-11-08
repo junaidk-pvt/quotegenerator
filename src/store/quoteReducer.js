@@ -21,6 +21,10 @@ const quoteSlice = createSlice({
             state?.bookmark?.push(action.payload)
             toast("Quotes Added Sucessfully ✔️")
         },
+        remove(state, action){
+            state.bookmark = state.bookmark.filter(item => item._id !== action.payload._id);
+            toast("Quotes Removed Sucessfully ✔️")
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -29,5 +33,5 @@ const quoteSlice = createSlice({
             })
     }
 })
-export const { add } = quoteSlice.actions
+export const { add, remove } = quoteSlice.actions
 export default quoteSlice.reducer;

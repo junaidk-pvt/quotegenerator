@@ -5,7 +5,6 @@ import {Path} from './utils/Path';
 const Layout =  lazy(()=> import( "./Layout"));
 const QuotesGenerator =  lazy(() => import("./pages/QuotesGenerator"));
 const Bookmarks =  lazy(()=> import("./pages/Bookmarks"));
-console.log('Path[0].path', Path[0].path)
 export const router = createBrowserRouter([
     {
         path: "/",

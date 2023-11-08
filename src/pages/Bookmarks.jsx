@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux'
 
 const Bookmarks = () => {
   const bookmarks = useSelector((state) => state?.quotes?.bookmark)
-  console.log('bookmarks', bookmarks)
   return (
     <div className={styles.quotemainDiv}>
       {bookmarks.length > 0 ?

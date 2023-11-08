@@ -10,9 +10,9 @@ const QuotesGenerator = () => {
   const { quote } = useSelector((state) => state.quotes)
   const [tagsOptions, setTagsOptions] = useState([])
   const [tag, setTag] = useState("")
-  const [loader, setLoader] = useState(true)
+  const [loader, setLoader] = useState(false)
   const handleNextQuote = (params) => {
-    setLoader(true)
+    setLoader(false)
     setTag(params)
     dispatch(fetchQuotes(params));
     setLoader(false)
@@ -22,9 +22,9 @@ const QuotesGenerator = () => {
     try {
       setLoader(true)
       const res = await getTags()
-      console.log('res', res)
       const options = res?.map((op) => {
         return {
+          id: op?._id,
           label: op?.name,
           value: op?.slug,
         };
@@ -49,7 +49,7 @@ const QuotesGenerator = () => {
           <select onChange={(e) => { handleNextQuote(e?.target?.value) }}>
             <option value=""> Select All</option>
             {tagsOptions?.map((option) => {
-              return <option key={option?.value} value={option?.value}> {option?.label}</option>
+              return <option key={option?.id} value={option?.value}> {option?.label}</option>
             })}
           </select>
           <button type='submit' className={styles.nextBtn} onClick={() => { handleNextQuote(tag) }}> Next Quote </button>
