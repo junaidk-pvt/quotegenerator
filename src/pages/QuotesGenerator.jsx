@@ -17,7 +17,7 @@ const QuotesGenerator = () => {
     await dispatch(fetchQuotes(params));
     setLoader(false)
   }
-  console.log('loader', loader)
+  
   const getTagsAPI = async () => {
     try {
       setLoader(true)

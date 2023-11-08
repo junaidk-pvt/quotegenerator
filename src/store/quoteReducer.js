@@ -9,11 +9,24 @@ export const fetchQuotes = createAsyncThunk(
         return res;
     }
 )
+const getBookmark = () => {
+    const storedBookmarks = localStorage.getItem("bookmarks");
+    return storedBookmarks ? JSON.parse(storedBookmarks) : [];
+};
+
+const saveBookmark = (bookmarks) => {
+    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+};
+const removeBookmark = (quoteId) => {
+    const bookmarks = getBookmark();
+    const updatedBookmarks = bookmarks.filter((bookmark) => bookmark._id !== quoteId);
+    saveBookmark(updatedBookmarks);
+  };
 const quoteSlice = createSlice({
     name: 'quote',
     initialState: {
         quote: [],
-        bookmark: [],
+        bookmark: getBookmark(),
 
     },
     reducers: {
@@ -26,13 +39,15 @@ const quoteSlice = createSlice({
             } else {
                 state.bookmark.push(newQuote);
                 toast.success("Quote added successfully");
+                saveBookmark(state.bookmark)
             }
 
         },
         remove(state, action) {
-
             state.bookmark = state.bookmark.filter(item => item._id !== action.payload._id);
             toast?.success("Quotes Removed Sucessfully")
+            removeBookmark(action.payload._id)
+           
         }
     },
     extraReducers: (builder) => {
